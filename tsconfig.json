@@ -37,7 +37,13 @@
       ],
       "dh-marvel/test/*": [
         "test/*"
-      ]
+      ],
+      "dh-marvel/interface/*": [
+        "interface/*"
+      ],
+      "dh-marvel/data/*": [
+        "data/*"
+      ],
     }
   },
   "include": [
