@@ -3,14 +3,14 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Faq } from "dh-marvel/interface/faqs";
 import { getFaqs } from "dh-marvel/services/faqs/getFaqs";
 import React from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import { FaqsType } from "dh-marvel/data/faqs/faqsData";
 
 interface Props {
-  faqs: Faq[];
+  faqs: FaqsType[];
 }
 
 const PreguntasFrecuentes = ({ faqs }: Props) => {
@@ -19,12 +19,12 @@ const PreguntasFrecuentes = ({ faqs }: Props) => {
       <Typography variant="h2">Preguntas Frecuentes</Typography>
       <Box display={"flex"} flexDirection={"column"} alignItems={"center"} mt={2}>
         {faqs.map((e) => (
-          <Accordion key={e.id} sx={{ maxWidth: 0.8 }}>
+          <Accordion key={e.id} sx={{ width: 0.8 }}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography>{e.title}</Typography>
+              <Typography>{e.question}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>{e.description}</Typography>
+              <Typography>{e.answer}</Typography>
             </AccordionDetails>
           </Accordion>
         ))}
