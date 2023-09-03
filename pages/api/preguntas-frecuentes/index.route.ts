@@ -1,4 +1,4 @@
-import { FaqsType } from './../../../data/faqs/faqsData';
+import { FaqsType } from 'interface/types';
 import { faqsData } from "dh-marvel/data/faqs/faqsData";
 import { NextApiRequest, NextApiResponse } from "next";
 

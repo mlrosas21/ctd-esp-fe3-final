@@ -7,7 +7,7 @@ import { getFaqs } from "dh-marvel/services/faqs/getFaqs";
 import React from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import { FaqsType } from "dh-marvel/data/faqs/faqsData";
+import { FaqsType } from 'interface/types';
 
 interface Props {
   faqs: FaqsType[];
