@@ -1,8 +1,16 @@
-import type { NextPage } from "next";
+import type { GetStaticPaths, NextPage } from "next";
 import Head from "next/head";
-import BodySingle from "dh-marvel/components/layouts/body/single/body-single";
+import BodySingle from "components/layouts/body/single/body-single";
+import { getComics } from "dh-marvel/services/marvel/marvel.service";
+import { Comic } from "interface/types";
+import ComicCard from "dh-marvel/components/ComicCard";
+import ComicGrid from "dh-marvel/components/ComicGrid";
 
-const Index: NextPage = () => {
+interface Props {
+  comics: Comic[];
+}
+
+const Index: NextPage<Props> = ({ comics }) => {
   return (
     <>
       <Head>
@@ -11,9 +19,34 @@ const Index: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <BodySingle title={"Sample"}></BodySingle>
+      <BodySingle title={"Sample"}>
+        <ComicGrid comics={comics}></ComicGrid>
+      </BodySingle>
     </>
   );
 };
+
+export async function getStaticProps() {
+  const { data } = await getComics(0, 12);
+
+  return {
+    props: {
+      comics: data.results,
+    },
+  };
+}
+
+// export async function getStaticPaths() {
+//   const { data } = await getComics(0, 12);
+
+//   const paths = data.results.map((comic: Comic) => ({
+//     params: { id: comic.id },
+//   }));
+
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
 
 export default Index;
