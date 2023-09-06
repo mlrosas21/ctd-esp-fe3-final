@@ -14,9 +14,6 @@ const ComicGrid = ({ comics }: Props) => {
 
   const handleClick = (id: number) => {
     router.push(`/comics/${id}`)  
-  }  
-
-  console.log(comics)
 
   return (
     <Grid

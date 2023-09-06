@@ -7,7 +7,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
 
 interface Props {
-  comic: Comic
+  comic: Comic;
 }
 
 const ComicPage = ({ comic }: Props) => {
@@ -26,13 +26,10 @@ const ComicPage = ({ comic }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log(params);
-
   const id = Number(params?.id);
 
   try {
     const res = await getComic(id);
-    console.log(res);
 
     return {
       props: {
