@@ -2,7 +2,7 @@ import 'whatwg-fetch'
 import '@testing-library/jest-dom/extend-expect'
 import {server} from './test/server.ts'
 
-process.env.MARVEL_API_URL = 'https://ctd-esp-fe3-final-swart.vercel.app/api/faqs'
+process.env.MARVEL_API_URL = 'http://localhost/marvel/api'
 process.env.MARVEL_API_PRIVATE_KEY = 'PRIVATE_KEY'
 process.env.MARVEL_API_PUBLIC_KEY = 'PUBLIC_KEY'
 
