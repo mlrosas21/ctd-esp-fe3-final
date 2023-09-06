@@ -3,8 +3,7 @@ import Head from "next/head";
 import BodySingle from "components/layouts/body/single/body-single";
 import { getComics } from "dh-marvel/services/marvel/marvel.service";
 import { Comic } from "interface/types";
-import ComicCard from "dh-marvel/components/ComicCard";
-import ComicGrid from "dh-marvel/components/ComicGrid";
+import ComicGrid from "dh-marvel/components/ComicGrid/ComicGrid";
 
 interface Props {
   comics: Comic[];
@@ -35,18 +34,5 @@ export async function getStaticProps() {
     },
   };
 }
-
-// export async function getStaticPaths() {
-//   const { data } = await getComics(0, 12);
-
-//   const paths = data.results.map((comic: Comic) => ({
-//     params: { id: comic.id },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
 
 export default Index;

@@ -68,4 +68,7 @@ export type Comic = {
     items: any[]; // You may want to replace 'any' with a specific type if you know the structure.
     returned: number;
   };
+  price: number,
+  oldPrice: number,
+  stock: number
 }
