@@ -6,7 +6,11 @@ import { getComic, getComics } from "dh-marvel/services/marvel/marvel.service";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
 
-const ComicPage = ({ comic }) => {
+interface Props {
+  comic: Comic
+}
+
+const ComicPage = ({ comic }: Props) => {
   return (
     <Box
       display={"flex"}
