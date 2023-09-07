@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import { Comic } from "dh-marvel/interface/types";
-import { Button, CardActions } from "@mui/material";
+import { Button, CardActions, CardContent, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import ComicCard from "../ComicCard/ComicCard";
 
@@ -10,11 +10,11 @@ interface Props {
 }
 
 const ComicGrid = ({ comics }: Props) => {
-  const router = useRouter()
+  const router = useRouter();
 
   const handleClick = (id: number) => {
-    router.push(`/comics/${id}`)  
-  }
+    router.push(`/comics/${id}`);
+  };
 
   return (
     <Grid
@@ -25,9 +25,14 @@ const ComicGrid = ({ comics }: Props) => {
       alignItems="stretch"
     >
       {comics.map((comic) => (
-        <Grid item xs={2} sm={3} md={3} xl={3} key={comic.id} >
+        <Grid item xs={2} sm={3} md={3} xl={3} key={comic.id}>
           <ComicCard key={comic.id} {...comic}>
-            <CardActions sx={{mt: 'auto', p: 3}}>
+            <CardContent>
+              <Typography gutterBottom variant="h6" component="div">
+                {comic.title}
+              </Typography>
+            </CardContent>
+            <CardActions sx={{ mt: "auto", p: 3 }}>
               <Button size="small" variant="contained">
                 Comprar
               </Button>

@@ -3,7 +3,7 @@ import Head from "next/head";
 import BodySingle from "components/layouts/body/single/body-single";
 import { getComics } from "dh-marvel/services/marvel/marvel.service";
 import { Comic } from "interface/types";
-import ComicGrid from "dh-marvel/components/ComicGrid/ComicGrid";
+import ComicGrid from "dh-marvel/components/ui/ComicGrid/ComicGrid";
 
 interface Props {
   comics: Comic[];
@@ -18,7 +18,7 @@ const Index: NextPage<Props> = ({ comics }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <BodySingle title={"Sample"}>
+      <BodySingle title={"Comics"}>
         <ComicGrid comics={comics}></ComicGrid>
       </BodySingle>
     </>

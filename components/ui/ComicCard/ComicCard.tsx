@@ -26,13 +26,8 @@ const ComicCard: React.FC<ComicCardProps> = ({ children, id, thumbnail, title, d
         alt={`${title} thumbnail photo`}
         height="300"
         image={`${thumbnail.path}.${thumbnail.extension}`}
-        sx={{ objectFit: 'contain' }}
+        sx={{ objectFit: 'contain', flex: 1 }}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
-          {title}
-        </Typography>
-      </CardContent>
       {children}
     </Card>
   );

@@ -1,0 +1,53 @@
+.comicDetailBox {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 25px;
+  padding: 1rem;
+}
+
+.isbnTag {
+  color: white;
+  background-color: red;
+  border: solid 1px black;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 2px 5px;
+  margin: 0;
+}
+
+.comicDescription {
+  color: rgb(104, 112, 125);;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.mainTag {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.currentPrice {
+  color: var(--vd-blue);
+  font-size: 25px;
+  font-weight: 700;
+}
+.discount{
+  color: green;
+}
+.oldPrice {
+  color: rgba(219, 2, 2, 0.56);
+  background-color: var(--pale-orange);
+  border-radius: 5px;
+  text-decoration: line-through;
+  padding: 2px;
+}

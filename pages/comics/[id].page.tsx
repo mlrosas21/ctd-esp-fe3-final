@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
-import ComicCard from "dh-marvel/components/ComicCard/ComicCard";
-import ComicDetails from "dh-marvel/components/ComicDetails/ComicDetails";
+import ComicCard from "dh-marvel/components/ui/ComicCard/ComicCard";
+import ComicDetails from "dh-marvel/components/ui/ComicDetails/ComicDetails";
 import { Comic } from "dh-marvel/interface/types";
 import { getComic, getComics } from "dh-marvel/services/marvel/marvel.service";
 import { GetStaticPaths, GetStaticProps } from "next";

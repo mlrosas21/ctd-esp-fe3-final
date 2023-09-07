@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import ComicCard from "../ComicCard/ComicCard";
+import React from "react";
 import { Comic } from "dh-marvel/interface/types";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import styles from "./ComicDetails.module.css";
 
 // ### Página 2: Detalle del Cómic (Comic)
 
@@ -30,26 +29,32 @@ interface Props {
 const ComicDetails = ({ comic }: Props) => {
   return (
     <>
-      <Box className="description">
-        <Typography variant="body2" className="pre">
-          {comic.isbn}
+      <Box className={styles.comicDetailBox}>
+        <Typography variant="body2" className={styles.isbnTag}>
+          ISBN: {comic.isbn}
         </Typography>
         <Typography variant="h4">{comic.title}</Typography>
-        <Typography variant="body1" className="desc">
+        <Typography variant="body1" className={styles.comicDescription}>
           {comic.description || "Sin descripción disponible."}
         </Typography>
-        <Box>Stock: {comic.stock}</Box>
-        <Box className="price">
-          <Box className="main-tag">
-            <Typography variant="h5">{comic.oldPrice}</Typography>
-            <Typography variant="body2">
-              comic.price/comic.oldPrice*100
+
+        <Box className={styles.price}>
+          <Typography className={styles.oldPrice}>
+            $ {comic.oldPrice.toFixed(2)}
+          </Typography>
+
+          <Box className={styles.mainTag}>
+            <Typography variant="h5" className={styles.currentPrice}>
+              $ {comic.price.toFixed(2)}
+            </Typography>
+
+            <Typography variant="body2" className={styles.discount}>
+              {((1 - comic.price / comic.oldPrice) * 100).toFixed(2)} % OFF
             </Typography>
           </Box>
-          <Typography variant="body2">
-            <s>{comic.price}</s>
-          </Typography>
+          <Typography variant="body2">Stock: {comic.stock} un.</Typography>
         </Box>
+        {comic.stock > 0 && <Button variant="contained">Comprar</Button>}
       </Box>
     </>
   );
