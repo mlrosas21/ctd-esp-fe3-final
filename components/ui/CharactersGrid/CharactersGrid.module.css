@@ -1,0 +1,9 @@
+.title {
+  padding: 8px;
+  margin: 12px;
+}
+
+.grid {
+  padding: 16px;
+  justify-content: center;
+}
