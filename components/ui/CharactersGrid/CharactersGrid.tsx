@@ -1,5 +1,3 @@
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
 import { Character } from "dh-marvel/interface/types";
 import CharacterCard from "../CharacterCard/CharacterCard";
 import Grid from "@mui/material/Grid";
@@ -14,7 +12,7 @@ const CharactersGrid = ({ characters }: Props) => {
   return (
     <>
       <Typography variant="h4" className={styles.title}>
-        Personajes presentes
+        Personajes presentes ({characters.length})
       </Typography>
       <Grid
         container

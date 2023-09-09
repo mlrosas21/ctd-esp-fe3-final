@@ -1,5 +1,6 @@
 .card {
   display: flex;
+  height: 100%;
 }
 
 .cardContent {
@@ -9,4 +10,5 @@
 
 .image {
   width: 150px;
+  height: 100%;
 }

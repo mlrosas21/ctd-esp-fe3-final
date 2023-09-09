@@ -58,7 +58,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await getComics(0, 12);
+  const { data } = await getComics();
 
   const paths = data.results.map((comic: Comic) => {
     return {
