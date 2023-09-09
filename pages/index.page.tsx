@@ -1,15 +1,33 @@
-import type { GetStaticPaths, NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import BodySingle from "components/layouts/body/single/body-single";
 import { getComics } from "dh-marvel/services/marvel/marvel.service";
 import { Comic } from "interface/types";
 import ComicGrid from "dh-marvel/components/ui/ComicGrid/ComicGrid";
+import ComicPagination from "dh-marvel/components/ui/Pagination/ComicPagination";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 interface Props {
   comics: Comic[];
+  total: number;
 }
 
-const Index: NextPage<Props> = ({ comics }) => {
+const Index: NextPage<Props> = ({ comics, total }) => {
+  const PER_PAGE = 12;
+  const [page, setPage] = useState(1);
+  const router = useRouter()
+
+  const handleChange = (pageNum: number) => {
+    setPage(pageNum);
+  };
+
+  useEffect(() => {
+    router.query.page = String(page)
+    router.push(router)
+    console.log(comics);
+  }, [page]);
+
   return (
     <>
       <Head>
@@ -19,18 +37,34 @@ const Index: NextPage<Props> = ({ comics }) => {
       </Head>
 
       <BodySingle title={"Comics"}>
-        <ComicGrid comics={comics}></ComicGrid>
+        <ComicPagination
+          page={page}
+          total={Math.ceil(total / PER_PAGE)}
+          setPage={handleChange}
+        />
+        <ComicGrid comics={comics} />
+        <ComicPagination
+          page={page}
+          total={Math.ceil(total / PER_PAGE)}
+          setPage={handleChange}
+        />
       </BodySingle>
     </>
   );
 };
 
-export async function getStaticProps() {
-  const { data } = await getComics(0, 12);
+export async function getServerSideProps({query}) {
+  const PER_PAGE = 12;
+  const page = query?.page || 1
+  
+  const { data } = await getComics((page-1)*PER_PAGE,PER_PAGE);
+
+  console.log(data.results)
 
   return {
     props: {
       comics: data.results,
+      total: data.total,
     },
   };
 }
