@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import BodySingle from "components/layouts/body/single/body-single";
 import { getComics } from "dh-marvel/services/marvel/marvel.service";
@@ -25,7 +25,6 @@ const Index: NextPage<Props> = ({ comics, total }) => {
   useEffect(() => {
     router.query.page = String(page)
     router.push(router)
-    console.log(comics);
   }, [page]);
 
   return (
@@ -53,13 +52,11 @@ const Index: NextPage<Props> = ({ comics, total }) => {
   );
 };
 
-export async function getServerSideProps({query}) {
+export const getServerSideProps: GetServerSideProps = async({query}) => {
   const PER_PAGE = 12;
-  const page = query?.page || 1
+  const page = Number(query?.page) || 1
   
   const { data } = await getComics((page-1)*PER_PAGE,PER_PAGE);
-
-  console.log(data.results)
 
   return {
     props: {
