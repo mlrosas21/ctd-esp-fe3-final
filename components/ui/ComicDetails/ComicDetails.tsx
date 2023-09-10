@@ -4,29 +4,22 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import styles from "./ComicDetails.module.css";
-
-// ### Página 2: Detalle del Cómic (Comic)
-
-// En esta página se deberá mostrar un detalle de un cómic seleccionado junto al precio y stock del mismo.
-
-// Se deberá tener en cuenta lo siguiente:
-//   * Nombre del comic
-//   * Descripción del comic
-//   * Imagen principal
-//   * Precio
-//   * Precio anterior
-//   * Botón de compra: en función de la disponibilidad de stock
-//     * Si hay stock, el botón debe aparecer habilitado y ser funcional
-//     * Si no hay stock, el botón debe estar deshabilitado y en gris, con el mensaje: Sin stock disponible
-//   * Lista de personajes asociados al cómic, con links a la página de cada personaje
-// * Permitir que el contenido sea indexable por los buscadores.
-// * Esta página debera utilizar el [Layout General](#layout-general)
+import Link from "next/link";
+import useOrderContext from "context/context";
 
 interface Props {
   comic: Comic;
 }
 
 const ComicDetails = ({ comic }: Props) => {
+  const {order, setOrder} = useOrderContext()
+
+  const handlePurchase = () => {
+    setOrder(comic)
+    console.log(order, setOrder);
+    
+  }
+
   return (
     <>
       <Box className={styles.comicDetailBox}>
@@ -54,7 +47,13 @@ const ComicDetails = ({ comic }: Props) => {
           </Box>
           <Typography variant="body2">Stock: {comic.stock} un.</Typography>
         </Box>
-        {comic.stock > 0 && <Button variant="contained">Comprar</Button>}
+        {comic.stock > 0 ? (
+          <Link href={"/checkout"}>
+          <Button variant="contained" onClick={handlePurchase}>Comprar</Button>
+          </Link>
+        ) : (
+          <Button disabled>Sin stock disponible</Button>
+        )}
       </Box>
     </>
   );
