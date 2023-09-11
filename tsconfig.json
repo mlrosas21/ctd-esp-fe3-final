@@ -31,7 +31,7 @@
     "**/*.ts",
     "**/*.tsx",
     "types.d.ts",
-    "context/context.js"
+    "context/context.tsx"
   ],
   "exclude": ["node_modules"]
 }
