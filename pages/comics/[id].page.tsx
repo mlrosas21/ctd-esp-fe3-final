@@ -8,7 +8,7 @@ import {
   getComicCharacters,
   getComics,
 } from "dh-marvel/services/marvel/marvel.service";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import React from "react";
 
 interface Props {
@@ -33,7 +33,7 @@ const ComicPage = ({ comic, characters }: Props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const id = Number(params?.id);
 
   try {
@@ -55,21 +55,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       },
     };
   }
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await getComics();
-
-  const paths = data.results.map((comic: Comic) => {
-    return {
-      params: { id: String(comic.id) },
-    };
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
 };
 
 export default ComicPage;
