@@ -20,7 +20,7 @@ const ComicCard: React.FC<ComicCardProps> = ({ children, id, thumbnail, title, d
   };
 
   return (
-    <Card sx={{ width: 345, height: 490, display: 'flex', flexDirection: 'column' }}>
+    <Card sx={{ width: 345, height: 1, display: 'flex', flexDirection: 'column' }}>
       <CardMedia
         component="img"
         alt={`${title} thumbnail photo`}
