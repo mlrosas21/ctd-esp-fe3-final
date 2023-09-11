@@ -4,6 +4,7 @@ import { Comic } from "dh-marvel/interface/types";
 import { Button, CardActions, CardContent, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import ComicCard from "../ComicCard/ComicCard";
+import styles from "./ComicGrid.module.css"
 
 interface Props {
   comics: Comic[];
@@ -21,14 +22,14 @@ const ComicGrid = ({ comics }: Props) => {
       py={3}
       container
       spacing={3}
-      columns={{ xs: 4, sm: 9, md: 12, xl: 12 }}
+      columns={{ xs: 3, sm: 6, md: 9, xl: 12 }}
       alignItems="stretch"
     >
       {comics.map((comic) => (
         <Grid item xs={2} sm={3} md={3} xl={3} key={comic.id}>
           <ComicCard key={comic.id} {...comic}>
             <CardContent>
-              <Typography gutterBottom variant="h6" component="div">
+              <Typography gutterBottom variant="h6" component="div" className={styles.title}>
                 {comic.title}
               </Typography>
             </CardContent>
