@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import PersonalData from "./PersonalData";
 import { useFormContext } from "react-hook-form";
 import Paper from "@mui/material/Paper";
@@ -38,7 +38,7 @@ const CheckoutForm = () => {
         {activeStep === 3 && <Payment />}
 
         <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
-          {activeStep > 1 && <Button onClick={prevStep}>Anterior</Button>}
+          <Button onClick={prevStep} disabled={activeStep === 1}>Anterior</Button>
           {activeStep < 3 && <Button onClick={nextStep}>Siguiente</Button>}
           {activeStep === 3 && <Button type="submit">Finalizar</Button>}
         </Box>
