@@ -9,11 +9,13 @@ import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 const CheckoutPage: NextPage = () => {
-  const { order, setOrder } = useOrderContext();
+  const {
+    order: { comic },
+  } = useOrderContext();
 
   const method = useForm();
 
-  if (!order) {
+  if (!comic) {
     return null;
   }
 
@@ -29,17 +31,21 @@ const CheckoutPage: NextPage = () => {
         height={0.9}
         m={4}
       >
-        <ComicCard {...order}>
+        <ComicCard {...comic}>
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
-              {order.title}
+              {comic.title}
             </Typography>
-            <Box display={"flex"} justifyContent={"space-between"} alignItems={"baseline"}>
+            <Box
+              display={"flex"}
+              justifyContent={"space-between"}
+              alignItems={"baseline"}
+            >
               <Typography gutterBottom variant="body2" component="div">
                 Detalle de compra:
               </Typography>
               <Typography gutterBottom component="div">
-                $ {order.price.toFixed(2)} - 1 un.
+                $ {comic.price.toFixed(2)} - 1 un.
               </Typography>
             </Box>
           </CardContent>
