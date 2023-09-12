@@ -1,13 +1,28 @@
-import { Comic } from "dh-marvel/interface/types";
-import { useState, createContext, useContext, ReactNode } from "react";
+import { Buyer, Comic } from "dh-marvel/interface/types";
+import {
+  useState,
+  createContext,
+  useContext,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 interface OrderContextType {
-  order: Comic | null; // Allow 'null' as a valid initial value
-  setOrder: (order: Comic | null) => void; // Allow 'null' as a valid argument
+  order: {
+    comic: Comic | undefined;
+    buyer: Buyer | undefined;
+  };
+  setOrder: Dispatch<
+    SetStateAction<{ comic: Comic | undefined; buyer: Buyer | undefined }>
+  >;
 }
 
 const initialState: OrderContextType = {
-  order: null,
+  order: {
+    comic: undefined,
+    buyer: undefined,
+  },
   setOrder: (order) => {},
 };
 
@@ -18,7 +33,9 @@ interface OrderProviderProps {
 }
 
 export const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
-  const [order, setOrder] = useState<Comic | null>(null);
+  const [order, setOrder] = useState<OrderContextType["order"]>(
+    initialState.order
+  );
 
   return (
     <OrderContext.Provider value={{ order, setOrder }}>

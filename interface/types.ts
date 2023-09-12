@@ -122,3 +122,25 @@ export type Character = {
     url: string;
   }[];
 };
+
+export type Buyer = {
+  personalInfo:{
+    name: string,
+    lastname: string,
+    email: string
+  },
+  deliveryInfo: {
+    address: string,
+    'address-info': string,
+    city: string,
+    province: string,
+    'zip-code': string
+  },
+  paymentInfo: {
+    'card-number': number,
+    'card-name': string,
+    'card-expiry': string,
+    cvc: number
+  }
+}
+
