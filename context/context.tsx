@@ -1,27 +1,19 @@
-import { Buyer, Comic } from "dh-marvel/interface/types";
+import { OrderContextType } from "dh-marvel/interface/types";
 import {
   useState,
   createContext,
   useContext,
   ReactNode,
-  Dispatch,
-  SetStateAction,
 } from "react";
-
-interface OrderContextType {
-  order: {
-    comic: Comic | undefined;
-    buyer: Buyer | undefined;
-  };
-  setOrder: Dispatch<
-    SetStateAction<{ comic: Comic | undefined; buyer: Buyer | undefined }>
-  >;
-}
 
 const initialState: OrderContextType = {
   order: {
     comic: undefined,
-    buyer: undefined,
+    buyer: {
+      personalInfo: undefined,
+      deliveryInfo: undefined,
+      paymentInfo: undefined
+    },
   },
   setOrder: (order) => {},
 };

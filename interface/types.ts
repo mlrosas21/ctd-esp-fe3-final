@@ -1,8 +1,10 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type FaqsType = {
-  id: number,
-  question: string,
-  answer: string,
-}
+  id: number;
+  question: string;
+  answer: string;
+};
 
 export type Comic = {
   id: number;
@@ -19,7 +21,7 @@ export type Comic = {
   issn: string;
   format: string;
   pageCount: number;
-  textObjects: any[]; // You may want to replace 'any' with a specific type if you know the structure.
+  textObjects: any[];
   resourceURI: string;
   urls: { type: string; url: string }[];
   series: {
@@ -27,15 +29,15 @@ export type Comic = {
     name: string;
   };
   variants: { resourceURI: string; name: string }[];
-  collections: any[]; // You may want to replace 'any' with a specific type if you know the structure.
-  collectedIssues: any[]; // You may want to replace 'any' with a specific type if you know the structure.
+  collections: any[];
+  collectedIssues: any[];
   dates: { type: string; date: string }[];
   prices: { type: string; price: number }[];
   thumbnail: {
     path: string;
     extension: string;
   };
-  images: any[]; // You may want to replace 'any' with a specific type if you know the structure.
+  images: { path: string; extension: string }[];
   creators: {
     available: number;
     collectionURI: string;
@@ -49,7 +51,7 @@ export type Comic = {
   characters: {
     available: number;
     collectionURI: string;
-    items: any[]; // You may want to replace 'any' with a specific type if you know the structure.
+    items: any[];
     returned: number;
   };
   stories: {
@@ -65,13 +67,13 @@ export type Comic = {
   events: {
     available: number;
     collectionURI: string;
-    items: any[]; // You may want to replace 'any' with a specific type if you know the structure.
+    items: any[];
     returned: number;
   };
-  price: number,
-  oldPrice: number,
-  stock: number
-}
+  price: number;
+  oldPrice: number;
+  stock: number;
+};
 
 export type Character = {
   id: number;
@@ -114,7 +116,7 @@ export type Character = {
   events: {
     available: number;
     collectionURI: string;
-    items: any[]; 
+    items: any[];
     returned: number;
   };
   urls: {
@@ -123,24 +125,66 @@ export type Character = {
   }[];
 };
 
-export type Buyer = {
-  personalInfo:{
-    name: string,
-    lastname: string,
-    email: string
-  },
-  deliveryInfo: {
-    address: string,
-    'address-info': string,
-    city: string,
-    province: string,
-    'zip-code': string
-  },
-  paymentInfo: {
-    'card-number': number,
-    'card-name': string,
-    'card-expiry': string,
-    cvc: number
-  }
-}
+export type OrderContextType = {
+  order: Order;
+  setOrder: Dispatch<SetStateAction<Order>>;
+};
 
+export type Order = {
+  comic?: Comic;
+  buyer?: Buyer;
+};
+
+export type Buyer = {
+  personalInfo?: PersonalInfo;
+  deliveryInfo?: DeliveryInfo;
+  paymentInfo?: PaymentInfo;
+};
+
+export type PersonalInfo = {
+  name: string;
+  lastname: string;
+  email: string;
+};
+
+export type DeliveryInfo = {
+  address: string;
+  address2?: string;
+  city: string;
+  province: string;
+  zip: string;
+};
+
+export type PaymentInfo = {
+  number: string;
+  name: string;
+  expiry: string;
+  cvc: string;
+};
+
+// prev: features/checkout.types.ts
+export type CheckoutInput = {
+  customer: {
+    name: string;
+    lastname: string;
+    email: string;
+    address: {
+      address1: string;
+      address2: string | null;
+      city: string;
+      state: string;
+      zipCode: string;
+    };
+  };
+  card: {
+    number: string;
+    cvc: string;
+    expDate: string;
+    nameOnCard: string;
+  };
+  order: {
+    name: string;
+    image: string;
+    price: number;
+  };
+};

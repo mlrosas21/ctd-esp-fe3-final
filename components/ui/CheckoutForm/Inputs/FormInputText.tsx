@@ -1,5 +1,6 @@
-import TextField from '@mui/material/TextField';
-import { Control, Controller } from 'react-hook-form';
+import { Box, Typography } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { Control, Controller, useController } from "react-hook-form";
 
 interface FormInputText {
   name: string;
@@ -19,26 +20,37 @@ export const FormInputText = ({
   label,
   required,
   type,
-  inputProps
+  inputProps,
+  defaultValue,
 }: FormInputText) => {
+  const {
+    formState: { errors },
+    fieldState: {invalid, error}
+  } = useController({
+    name: name,
+    control,
+    defaultValue,
+  });
+
   return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field }) => (
-        <TextField
-          {...field}
-          label={label}
-          variant="outlined"
-          fullWidth
-          required={required}
-          type={type}
-          sx={{ mb: 2 }}
-          inputProps={inputProps}
-        />
-      )}
-    />
+    <Box mb={2}>
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={defaultValue}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            label={label}
+            variant="outlined"
+            fullWidth
+            required={required}
+            type={type}
+            inputProps={inputProps}
+          />
+        )}
+      />
+      {invalid && error && <Typography variant="caption" color={"red"}>{error?.message}</Typography>}
+    </Box>
   );
 };
-
-

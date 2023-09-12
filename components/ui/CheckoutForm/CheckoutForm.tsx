@@ -6,7 +6,7 @@ import { useFormContext } from "react-hook-form";
 import Paper from "@mui/material/Paper";
 import DeliveryInfo from "./DeliveryInfo";
 import Payment from "./Payment";
-import styles from "./CheckoutForm.module.css"
+import styles from "./CheckoutForm.module.css";
 
 const CheckoutForm = () => {
   const [activeStep, setActiveStep] = useState(1);
@@ -19,30 +19,27 @@ const CheckoutForm = () => {
     setActiveStep((prevStep: number) => prevStep - 1);
   };
 
-  const { handleSubmit } = useFormContext();
-
-  const onSubmit = (data: any) => {
-    console.log(data);
-
-    alert("submitted");
-  };
-
   return (
-    <Paper sx={{ padding: 3, height: '100%' }}>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <Paper sx={{ padding: 3, height: "100%" }}>
+      {activeStep === 1 && <PersonalData nextStep={nextStep} />}
 
-        {activeStep === 1 && <PersonalData />}
+      {activeStep === 2 && <DeliveryInfo nextStep={nextStep} prevStep={prevStep} />}
 
-        {activeStep === 2 && <DeliveryInfo />}
+      {activeStep === 3 && <Payment prevStep={prevStep} />}
 
-        {activeStep === 3 && <Payment />}
-
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
-          <Button onClick={prevStep} disabled={activeStep === 1}>Anterior</Button>
-          {activeStep < 3 && <Button onClick={nextStep}>Siguiente</Button>}
-          {activeStep === 3 && <Button type="submit">Finalizar</Button>}
-        </Box>
-      </form>
+      {/* <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "auto",
+        }}
+      >
+        <Button onClick={prevStep} disabled={activeStep === 1}>
+          Anterior
+        </Button>
+        {activeStep < 3 && <Button onClick={nextStep}>Siguiente</Button>}
+        {activeStep === 3 && <Button type="submit">Finalizar</Button>}
+      </Box> */}
     </Paper>
   );
 };

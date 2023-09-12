@@ -13,8 +13,6 @@ const CheckoutPage: NextPage = () => {
     order: { comic },
   } = useOrderContext();
 
-  const method = useForm();
-
   if (!comic) {
     return null;
   }
@@ -51,9 +49,7 @@ const CheckoutPage: NextPage = () => {
           </CardContent>
         </ComicCard>
         <Box width={0.5}>
-          <FormProvider {...method}>
-            <CheckoutForm />
-          </FormProvider>
+          <CheckoutForm />
         </Box>
       </Box>
     </>
