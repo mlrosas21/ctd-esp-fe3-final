@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import useOrderContext from "context/context";
 import CharactersGrid from "dh-marvel/components/ui/CharactersGrid/CharactersGrid";
 import ComicCard from "dh-marvel/components/ui/ComicCard/ComicCard";
 import ComicDetails from "dh-marvel/components/ui/ComicDetails/ComicDetails";
@@ -9,7 +10,7 @@ import {
   getComics,
 } from "dh-marvel/services/marvel/marvel.service";
 import { GetServerSideProps } from "next";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface Props {
   comic: Comic;
@@ -17,6 +18,12 @@ interface Props {
 }
 
 const ComicPage = ({ comic, characters }: Props) => {
+  const { resetOrder } = useOrderContext()
+
+  useEffect(() => {
+    resetOrder()
+  }, [resetOrder])
+
   return (
     <Box>
       <Box

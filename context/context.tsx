@@ -16,6 +16,7 @@ const initialState: OrderContextType = {
     },
   },
   setOrder: (order) => {},
+  resetOrder: () => {},
 };
 
 export const OrderContext = createContext<OrderContextType>(initialState);
@@ -29,8 +30,12 @@ export const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
     initialState.order
   );
 
+  const resetOrder = () => {
+    setOrder(initialState.order);
+  };
+
   return (
-    <OrderContext.Provider value={{ order, setOrder }}>
+    <OrderContext.Provider value={{ order, setOrder, resetOrder }}>
       {children}
     </OrderContext.Provider>
   );
