@@ -20,19 +20,14 @@ const ComicCard: React.FC<ComicCardProps> = ({ children, id, thumbnail, title, d
   };
 
   return (
-    <Card sx={{ width: 345, height: 490, display: 'flex', flexDirection: 'column' }}>
+    <Card sx={{ width: 345, height: 1, display: 'flex', flexDirection: 'column' }}>
       <CardMedia
         component="img"
         alt={`${title} thumbnail photo`}
         height="300"
         image={`${thumbnail.path}.${thumbnail.extension}`}
-        sx={{ objectFit: 'contain' }}
+        sx={{ objectFit: 'contain', flex: 1 }}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
-          {title}
-        </Typography>
-      </CardContent>
       {children}
     </Card>
   );

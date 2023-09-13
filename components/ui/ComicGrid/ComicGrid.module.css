@@ -1,0 +1,14 @@
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buttonsContainer {
+  margin-top: auto;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}

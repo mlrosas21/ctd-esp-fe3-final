@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,39 +16,22 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "dh-marvel/components/*": [
-        "components/*"
-      ],
-      "dh-marvel/services/*": [
-        "services/*"
-      ],
-      "dh-marvel/features/*": [
-        "features/*"
-      ],
-      "dh-marvel/pages/*": [
-        "pages/*"
-      ],
-      "dh-marvel/styles/*": [
-        "styles/*"
-      ],
-      "dh-marvel/test/*": [
-        "test/*"
-      ],
-      "dh-marvel/interface/*": [
-        "interface/*"
-      ],
-      "dh-marvel/data/*": [
-        "data/*"
-      ],
+      "dh-marvel/components/*": ["components/*"],
+      "dh-marvel/services/*": ["services/*"],
+      "dh-marvel/features/*": ["features/*"],
+      "dh-marvel/pages/*": ["pages/*"],
+      "dh-marvel/styles/*": ["styles/*"],
+      "dh-marvel/test/*": ["test/*"],
+      "dh-marvel/interface/*": ["interface/*"],
+      "dh-marvel/data/*": ["data/*"]
     }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "types.d.ts"
+    "types.d.ts",
+    "context/context.tsx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
