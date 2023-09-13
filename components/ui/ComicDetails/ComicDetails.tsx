@@ -12,6 +12,7 @@ interface Props {
 }
 
 const ComicDetails = ({ comic }: Props) => {
+
   const { setOrder } = useOrderContext();
 
   const handlePurchase = () => {
@@ -32,18 +33,22 @@ const ComicDetails = ({ comic }: Props) => {
         </Typography>
 
         <Box className={styles.price}>
-          <Typography className={styles.oldPrice}>
-            $ {comic.oldPrice.toFixed(2)}
-          </Typography>
+          {comic.oldPrice !== comic.price && (
+            <Typography className={styles.oldPrice}>
+              $ {comic.oldPrice.toFixed(2)}
+            </Typography>
+          )}
 
           <Box className={styles.mainTag}>
             <Typography variant="h5" className={styles.currentPrice}>
               $ {comic.price.toFixed(2)}
             </Typography>
 
-            <Typography variant="body2" className={styles.discount}>
-              {((1 - comic.price / comic.oldPrice) * 100).toFixed(2)} % OFF
-            </Typography>
+            {comic.oldPrice !== comic.price && (
+              <Typography variant="body2" className={styles.discount}>
+                {((1 - comic.price / comic.oldPrice) * 100).toFixed(2)} % OFF
+              </Typography>
+            )}
           </Box>
           <Typography variant="body2">Stock: {comic.stock} un.</Typography>
         </Box>
