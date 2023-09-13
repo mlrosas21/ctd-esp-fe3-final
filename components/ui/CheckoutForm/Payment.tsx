@@ -12,7 +12,8 @@ import Button from "@mui/material/Button";
 import useOrderContext from "context/context";
 import { Error, PaymentInfo } from "dh-marvel/interface/types";
 import { postOrder } from "dh-marvel/services/checkout/postOrder";
-import ErrorAlert from "../ErrorAlert/ErrorAlert";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 interface Props {
   prevStep: () => void;
@@ -20,6 +21,7 @@ interface Props {
 
 const Payment = ({ prevStep }: Props) => {
   const { order, setOrder } = useOrderContext();
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
   type DataForm = yup.InferType<typeof schema>;
@@ -38,12 +40,17 @@ const Payment = ({ prevStep }: Props) => {
     const data = await response?.json();
 
     if (response && response.status !== 200) {
+      setOpenSnackbar(true);
       setError({ error: data.error, message: data.message });
-      return
+      return;
     }
 
-    setError(null)
+    setOpenSnackbar(false);
   };
+
+  const handleSnackbarClose = () => {
+    setOpenSnackbar(false)
+  }
 
   watch();
 
@@ -73,7 +80,6 @@ const Payment = ({ prevStep }: Props) => {
             pattern: "[0-9]*",
           }}
         />
-
         <FormInputText
           control={control}
           name="name"
@@ -113,7 +119,14 @@ const Payment = ({ prevStep }: Props) => {
           <Button onClick={prevStep}>Anterior</Button>
           <Button type="submit">Finalizar</Button>
         </Box>
-        {error && <ErrorAlert error={error}/>}
+
+        <Snackbar
+          open={openSnackbar}
+          message={error?.message}
+          onClose={handleSnackbarClose}
+        >
+          <Alert severity="error">{error?.message}</Alert>
+        </Snackbar>
       </form>
     </>
   );
