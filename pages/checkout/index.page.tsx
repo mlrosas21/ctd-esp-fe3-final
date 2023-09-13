@@ -5,17 +5,24 @@ import useOrderContext from "context/context";
 import CheckoutForm from "dh-marvel/components/ui/CheckoutForm/CheckoutForm";
 import ComicCard from "dh-marvel/components/ui/ComicCard/ComicCard";
 import { NextPage } from "next";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 const CheckoutPage: NextPage = () => {
   const {
-    order: { comic },
+    order: { comic, buyer },
   } = useOrderContext();
 
-  if (!comic) {
-    return null;
-  }
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!comic || !buyer) {
+      router.push("/");
+    }
+  }, [comic, buyer, router]);
+
+  if (!comic || !buyer) return;
 
   return (
     <>
