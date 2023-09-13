@@ -4,12 +4,10 @@ import Typography from "@mui/material/Typography";
 import useOrderContext from "context/context";
 import CheckoutForm from "dh-marvel/components/ui/CheckoutForm/CheckoutForm";
 import ComicCard from "dh-marvel/components/ui/ComicCard/ComicCard";
-import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { FormProvider, useForm } from "react-hook-form";
 
-const CheckoutPage: NextPage = () => {
+const CheckoutPage = () => {
   const {
     order: { comic, buyer },
   } = useOrderContext();
