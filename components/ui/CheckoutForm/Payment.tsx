@@ -14,6 +14,7 @@ import { Error, PaymentInfo } from "dh-marvel/interface/types";
 import { postOrder } from "dh-marvel/services/checkout/postOrder";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import { useRouter } from "next/router";
 
 interface Props {
   prevStep: () => void;
@@ -31,6 +32,8 @@ const Payment = ({ prevStep }: Props) => {
     defaultValues: {},
   });
 
+  const router = useRouter();
+
   const onSubmit = async (paymentInfo: PaymentInfo) => {
     setOrder((prevOrder) => {
       return { ...prevOrder, buyer: { ...prevOrder.buyer, paymentInfo } };
@@ -39,18 +42,19 @@ const Payment = ({ prevStep }: Props) => {
     const response = await postOrder({ order });
     const data = await response?.json();
 
-    if (response && response.status !== 200) {
+    if (!response || response && response.status !== 200) {
       setOpenSnackbar(true);
       setError({ error: data.error, message: data.message });
       return;
     }
 
     setOpenSnackbar(false);
+    router.push("/confirmacion-compra")
   };
 
   const handleSnackbarClose = () => {
-    setOpenSnackbar(false)
-  }
+    setOpenSnackbar(false);
+  };
 
   watch();
 
