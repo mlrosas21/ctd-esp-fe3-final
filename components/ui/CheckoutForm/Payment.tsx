@@ -45,8 +45,6 @@ const Payment = ({ prevStep }: Props) => {
       paymentInfo: paymentInfo
     }
 
-    console.log(newOrder);
-
     const response = await postOrder({ order: newOrder });
     const data = await response?.json();
     
