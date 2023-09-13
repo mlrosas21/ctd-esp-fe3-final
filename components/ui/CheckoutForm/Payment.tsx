@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Cards from "react-credit-cards-2";
 import { useForm } from "react-hook-form";
 import { FormInputText } from "./Inputs/FormInputText";
@@ -10,8 +10,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "@mui/material/Button";
 import useOrderContext from "context/context";
-import { PaymentInfo } from "dh-marvel/interface/types";
+import { Error, PaymentInfo } from "dh-marvel/interface/types";
 import { postOrder } from "dh-marvel/services/checkout/postOrder";
+import ErrorAlert from "../ErrorAlert/ErrorAlert";
 
 interface Props {
   prevStep: () => void;
@@ -19,6 +20,8 @@ interface Props {
 
 const Payment = ({ prevStep }: Props) => {
   const { order, setOrder } = useOrderContext();
+  const [error, setError] = useState<Error | null>(null);
+
   type DataForm = yup.InferType<typeof schema>;
 
   const { control, handleSubmit, getValues, watch } = useForm<DataForm>({
@@ -32,6 +35,14 @@ const Payment = ({ prevStep }: Props) => {
     });
 
     const response = await postOrder({ order });
+    const data = await response?.json();
+
+    if (response && response.status !== 200) {
+      setError({ error: data.error, message: data.message });
+      return
+    }
+
+    setError(null)
   };
 
   watch();
@@ -102,6 +113,7 @@ const Payment = ({ prevStep }: Props) => {
           <Button onClick={prevStep}>Anterior</Button>
           <Button type="submit">Finalizar</Button>
         </Box>
+        {error && <ErrorAlert error={error}/>}
       </form>
     </>
   );

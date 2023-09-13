@@ -188,3 +188,8 @@ export type CheckoutInput = {
     price: number;
   };
 };
+
+export type Error = {
+  error: string;
+  message: string;
+}
