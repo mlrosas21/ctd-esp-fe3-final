@@ -52,9 +52,6 @@ const DeliveryInfo = ({ prevStep, nextStep }: Props) => {
 
   return (
     <>
-      <Typography variant="h5" mb={2}>
-        Datos de entrega
-      </Typography>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInputText

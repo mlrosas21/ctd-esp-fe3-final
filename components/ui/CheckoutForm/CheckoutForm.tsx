@@ -1,15 +1,15 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import PersonalData from "./PersonalData";
-import { useFormContext } from "react-hook-form";
 import Paper from "@mui/material/Paper";
 import DeliveryInfo from "./DeliveryInfo";
 import Payment from "./Payment";
-import styles from "./CheckoutForm.module.css";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import styles from './CheckoutForm.module.css'
 
 const CheckoutForm = () => {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
 
   const nextStep = () => {
     setActiveStep((prevStep: number) => prevStep + 1);
@@ -20,26 +20,25 @@ const CheckoutForm = () => {
   };
 
   return (
-    <Paper sx={{ padding: 3, height: "100%" }}>
-      {activeStep === 1 && <PersonalData nextStep={nextStep} />}
+    <Paper className={styles.form}>
+      <Stepper activeStep={activeStep} className={styles.stepper} alternativeLabel>
+        <Step>
+          <StepLabel>Datos Personales</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Datos del envío</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Pago</StepLabel>
+        </Step>
+      </Stepper>
+      {activeStep === 0 && <PersonalData nextStep={nextStep} />}
 
-      {activeStep === 2 && <DeliveryInfo nextStep={nextStep} prevStep={prevStep} />}
+      {activeStep === 1 && (
+        <DeliveryInfo nextStep={nextStep} prevStep={prevStep} />
+      )}
 
-      {activeStep === 3 && <Payment prevStep={prevStep} />}
-
-      {/* <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "auto",
-        }}
-      >
-        <Button onClick={prevStep} disabled={activeStep === 1}>
-          Anterior
-        </Button>
-        {activeStep < 3 && <Button onClick={nextStep}>Siguiente</Button>}
-        {activeStep === 3 && <Button type="submit">Finalizar</Button>}
-      </Box> */}
+      {activeStep === 2 && <Payment prevStep={prevStep} />}
     </Paper>
   );
 };

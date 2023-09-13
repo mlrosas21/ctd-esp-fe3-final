@@ -60,10 +60,7 @@ const Payment = ({ prevStep }: Props) => {
 
   return (
     <>
-      <Typography variant="h5" mb={2}>
-        Datos del pago
-      </Typography>
-      <Box mb={2}>
+      <Box mb={4}>
         <Cards
           number={getValues("number") || ""}
           name={getValues("name") || ""}
@@ -121,7 +118,7 @@ const Payment = ({ prevStep }: Props) => {
           }}
         >
           <Button onClick={prevStep}>Anterior</Button>
-          <Button type="submit">Finalizar</Button>
+          <Button type="submit" variant="contained">Finalizar</Button>
         </Box>
 
         <Snackbar

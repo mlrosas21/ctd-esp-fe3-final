@@ -6,6 +6,7 @@ import CheckoutForm from "dh-marvel/components/ui/CheckoutForm/CheckoutForm";
 import ComicCard from "dh-marvel/components/ui/ComicCard/ComicCard";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import styles from './styles.module.css'
 
 const CheckoutPage = () => {
   const {
@@ -33,6 +34,7 @@ const CheckoutPage = () => {
         width={1}
         height={0.9}
         m={4}
+        className={styles.container}
       >
         <ComicCard {...comic}>
           <CardContent>
@@ -53,7 +55,7 @@ const CheckoutPage = () => {
             </Box>
           </CardContent>
         </ComicCard>
-        <Box width={0.5}>
+        <Box minWidth={0.5}>
           <CheckoutForm />
         </Box>
       </Box>

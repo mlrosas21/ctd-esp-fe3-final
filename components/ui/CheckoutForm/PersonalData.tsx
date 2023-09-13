@@ -49,10 +49,6 @@ const PersonalData = ({ nextStep }: Props) => {
 
   return (
     <>
-      <Typography variant="h5" mb={4}>
-        Datos personales
-      </Typography>
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInputText
           control={control}
