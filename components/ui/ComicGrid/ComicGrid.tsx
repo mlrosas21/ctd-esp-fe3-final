@@ -1,20 +1,44 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import { Comic } from "dh-marvel/interface/types";
-import { Button, CardActions, CardContent, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  CardActions,
+  CardContent,
+  Link,
+  Typography,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import ComicCard from "../ComicCard/ComicCard";
 import styles from "./ComicGrid.module.css";
+import useOrderContext from "context/context";
 
 interface Props {
   comics: Comic[];
 }
 
 const ComicGrid = ({ comics }: Props) => {
+  const { setOrder } = useOrderContext();
   const router = useRouter();
 
   const handleClick = (id: number) => {
     router.push(`/comics/${id}`);
+  };
+
+  const handlePurchase = async (idComic: number) => {
+    const response = await fetch(`/api/compra-rapida/?id=${idComic}`);
+
+    const comic = await response.json();
+    const { stock } = comic as Comic;
+
+    if (stock === 0) handleClick(idComic);
+
+    setOrder((prevOrder) => {
+      return { ...prevOrder, comic };
+    });
+
+    router.push("/checkout");
   };
 
   return (
@@ -46,8 +70,12 @@ const ComicGrid = ({ comics }: Props) => {
                 {comic.title}
               </Typography>
             </CardContent>
-            <CardActions sx={{ mt: "auto", p: 3 }}>
-              <Button size="small" variant="contained">
+            <CardActions className={styles.buttonsContainer}>
+              <Button
+                size="small"
+                variant="contained"
+                onClick={() => handlePurchase(comic.id)}
+              >
                 Comprar
               </Button>
               <Button size="small" onClick={() => handleClick(comic.id)}>
