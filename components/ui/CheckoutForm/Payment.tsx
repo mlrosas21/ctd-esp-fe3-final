@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cards from "react-credit-cards-2";
 import { useForm } from "react-hook-form";
 import { FormInputText } from "./Inputs/FormInputText";
@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "@mui/material/Button";
 import useOrderContext from "context/context";
-import { Error, PaymentInfo } from "dh-marvel/interface/types";
+import { Error, Order, PaymentInfo } from "dh-marvel/interface/types";
 import { postOrder } from "dh-marvel/services/checkout/postOrder";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
@@ -39,8 +39,17 @@ const Payment = ({ prevStep }: Props) => {
       return { ...prevOrder, buyer: { ...prevOrder.buyer, paymentInfo } };
     });
 
-    const response = await postOrder({ order });
+    const newOrder: Order = {...order}
+    newOrder.buyer = {
+      ...newOrder.buyer,
+      paymentInfo: paymentInfo
+    }
+
+    console.log(newOrder);
+
+    const response = await postOrder({ order: newOrder });
     const data = await response?.json();
+    
 
     if (!response || response && response.status !== 200) {
       setOpenSnackbar(true);

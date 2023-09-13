@@ -47,7 +47,7 @@ export const postOrder = async ({ order }: Props) => {
   };
 
   const response = await fetch(
-    "http://localhost:3000/api/checkout",
+    "/api/checkout",
     requestOptions
   );
   
