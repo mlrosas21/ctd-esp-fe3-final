@@ -17,7 +17,7 @@ const CharacterPage = ({ character }: Props) => {
   return (
     <LayoutGeneral>
       <Head>
-        <title>{character.name}</title>
+        <title>Detalle de personaje</title>
         <meta name="description" content="Página de descripción de personaje" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
