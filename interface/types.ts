@@ -128,6 +128,7 @@ export type Character = {
 export type OrderContextType = {
   order: Order;
   setOrder: Dispatch<SetStateAction<Order>>;
+  resetOrder: () => void,
 };
 
 export type Order = {

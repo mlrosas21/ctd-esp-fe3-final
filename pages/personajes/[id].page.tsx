@@ -6,6 +6,8 @@ import {
 } from "dh-marvel/services/marvel/marvel.service";
 import { Character } from "dh-marvel/interface/types";
 import CharacterDetail from "dh-marvel/components/ui/CharacterDetail/CharacterDetail";
+import LayoutGeneral from "dh-marvel/components/layouts/layout-general";
+import Head from "next/head";
 
 interface Props {
   character: Character;
@@ -13,7 +15,14 @@ interface Props {
 
 const CharacterPage = ({ character }: Props) => {
   return (
-    <CharacterDetail character={character}/>
+    <LayoutGeneral>
+      <Head>
+        <title>Detalle de personaje</title>
+        <meta name="description" content="Página de descripción de personaje" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <CharacterDetail character={character} />
+    </LayoutGeneral>
   );
 };
 
