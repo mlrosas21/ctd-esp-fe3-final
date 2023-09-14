@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import CardContent from "@mui/material/CardContent";
 import OrderConfirmed from "dh-marvel/components/ui/OrderConfirmed/OrderConfirmed";
+import LayoutCheckout from "dh-marvel/components/layouts/layout-checkout";
 
 const ConfirmPage = () => {
   const {
@@ -24,7 +25,11 @@ const ConfirmPage = () => {
 
   if (!comic || !buyer) return null;
 
-  return <OrderConfirmed comic={comic} buyer={buyer} />;
+  return (
+    <LayoutCheckout>
+      <OrderConfirmed comic={comic} buyer={buyer} />
+    </LayoutCheckout>
+  );
 };
 
 export default ConfirmPage;

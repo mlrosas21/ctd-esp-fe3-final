@@ -1,6 +1,5 @@
 import type { AppProps } from "next/app";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import LayoutGeneral from "dh-marvel/components/layouts/layout-general";
 import { theme } from "dh-marvel/styles/material-theme";
 import { OrderProvider } from "context/context";
 
@@ -9,9 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <OrderProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <LayoutGeneral>
-          <Component {...pageProps} />
-        </LayoutGeneral>
+        <Component {...pageProps} />
         <style jsx global>{`
           /* Other global styles such as 'html, body' etc... */
 
