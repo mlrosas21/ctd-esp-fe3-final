@@ -8,9 +8,9 @@ import { Character, Comic } from "dh-marvel/interface/types";
 import {
   getComic,
   getComicCharacters,
-  getComics,
 } from "dh-marvel/services/marvel/marvel.service";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import React, { useEffect } from "react";
 
 interface Props {
@@ -27,6 +27,11 @@ const ComicPage = ({ comic, characters }: Props) => {
 
   return (
     <LayoutGeneral>
+      <Head>
+        <title>{comic.title}</title>
+        <meta name="description" content="Página de detalle de cómic" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Box>
         <Box
           display={"flex"}

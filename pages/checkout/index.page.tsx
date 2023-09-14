@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 import LayoutCheckout from "dh-marvel/components/layouts/layout-checkout";
+import Head from "next/head";
 
 const CheckoutPage = () => {
   const {
@@ -27,6 +28,11 @@ const CheckoutPage = () => {
   return (
     <>
       <LayoutCheckout>
+        <Head>
+          <title>Checkout</title>
+          <meta name="description" content="Formulario de compra" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <Box
           display={"flex"}
           flexDirection={"row"}
