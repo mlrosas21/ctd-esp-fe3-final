@@ -33,7 +33,9 @@ const ConfirmPage = () => {
         <meta name="description" content="La orden ha sido creada con éxito" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <OrderConfirmed comic={comic} buyer={buyer} />
+      <Box display={"flex"} justifyContent={"center"} width={1}>
+        <OrderConfirmed comic={comic} buyer={buyer} />
+      </Box>
     </LayoutCheckout>
   );
 };

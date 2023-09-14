@@ -32,7 +32,10 @@ const ComicGrid = ({ comics }: Props) => {
     const comic = await response.json();
     const { stock } = comic as Comic;
 
-    if (stock === 0) handleClick(idComic);
+    if (stock === 0) {
+      handleClick(idComic)
+      return
+    };
 
     setOrder((prevOrder) => {
       return { ...prevOrder, comic };

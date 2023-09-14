@@ -23,7 +23,7 @@ const ComicPage = ({ comic, characters }: Props) => {
 
   useEffect(() => {
     resetOrder();
-  }, [resetOrder]);
+  }, []);
 
   return (
     <LayoutGeneral>

@@ -7,13 +7,11 @@ import CardContent from "@mui/material/CardContent";
 import { Buyer, Comic } from "dh-marvel/interface/types";
 
 interface Props {
-  comic: Comic,
-  buyer: Buyer
+  comic: Comic;
+  buyer: Buyer;
 }
 
-const OrderConfirmed = ({comic, buyer}: Props) => {
-
-
+const OrderConfirmed = ({ comic, buyer }: Props) => {
   return (
     <Paper className={styles.root}>
       <Box className={styles.greenSection}>
@@ -41,7 +39,10 @@ const OrderConfirmed = ({comic, buyer}: Props) => {
                   {buyer.personalInfo?.name} {buyer.personalInfo?.lastname}
                 </Typography>
               </Box>
-              <Typography>Email: {buyer.personalInfo?.email}</Typography>
+              <Box className={styles.info}>
+                <Typography>Email:</Typography>
+                <Typography>{buyer.personalInfo?.email}</Typography>
+              </Box>
             </Box>
           </Paper>
           <Paper sx={{ padding: 3 }}>
